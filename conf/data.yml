@@ -1,0 +1,72 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+ User(andreaschr):
+   email: andreas22@gmail.com
+   password: 1234
+   fullname: Andreas Christodoulou
+   
+ Student(1):
+   studentName: Marios
+   dateOfBirth: 2001-01-05
+   className: IT Class   
+   
+ Student(2):
+   studentName: Mary
+   dateOfBirth: 2002-02-05
+   className: Math Class  
+   
+ Student(3):
+   studentName: Mike
+   dateOfBirth: 2001-03-05
+   className: Literature Class      
+   
+ StudentResults(r1):
+   year: 2010
+   quarter: Q1
+   mathematics: 5
+   computerScience: 8
+   literature: 7
+   student: 1
+   
+ StudentResults(r2):
+   year: 2010
+   quarter: Q2
+   mathematics: 6
+   computerScience: 9
+   literature: 6
+   student: 1
+   
+ StudentResults(r3):
+   year: 2010
+   quarter: Q1
+   mathematics: 4
+   computerScience: 5
+   literature: 6   
+   student: 2
+   
+ StudentResults(r4):
+   year: 2010
+   quarter: Q2
+   mathematics: 6
+   computerScience: 5
+   literature: 6   
+   student: 2
+      
+ StudentResults(r5):
+   year: 2010
+   quarter: Q1
+   mathematics: 3
+   computerScience: 4
+   literature: 7 
+   student: 3
+   
+ StudentResults(r6):
+   year: 2010
+   quarter: Q2
+   mathematics: 6
+   computerScience: 7
+   literature: 7   
+   student: 3
+   
+   
