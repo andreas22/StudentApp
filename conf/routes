@@ -3,15 +3,22 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
-GET     /upload                                 Application.upload
-GET     /charts/{id}                            Application.charts
+*       /                                                           module:secure
+GET     /                                                           Application.index
+
+# Import CRUD routes
+GET    /admin/reports                                               Admin.reports
+GET    /admin/generalAveragePerQuarter/{<[0-9]+>id}                 Admin.generalAveragePerQuarter
+GET    /admin/subjectGradesPerQuarter/{<[a-z]+>subject}             Admin.subjectGradesPerQuarter  
+GET    /admin/yearQuarterGeneralAverage/{value}                     Admin.yearQuarterGeneralAverage
+GET    /admin/?                                                     Admin.index
+*      /admin                                                       module:crud
 
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                                                404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET     /public/                                                    staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                                      {controller}.{action}

@@ -1,0 +1,29 @@
+#{extends 'admin.html' /}
+#{set title:'Upload Results' /}
+
+<div style="padding-left: 20px;">
+    <h1>Upload Results</h1>
+
+    <form action="@{Admin.uploadFile()}" method="POST" enctype="multipart/form-data">
+        <table cellspacing="2" cellpadding="2" border="0">
+            <tr>
+                <td>Filename:</td>        
+                <td><input type="text" name="filename" /></td>
+            </tr>
+            <tr>
+                <td>File:</td>        
+                <td><input type="file" id="file" name="file" /></td>
+            </tr>
+            <tr>
+                <td></td>        
+                <td><input type="submit" value="Upload" /></td>
+            </tr>
+        </table>
+    </form>
+
+    #{if upload}
+    <br />
+    <h2>Last uploaded file</h2>
+    (${upload.id}) ${upload.fileName} by ${upload.user.fullname}
+    #{/if}
+</div>

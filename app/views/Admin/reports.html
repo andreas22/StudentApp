@@ -1,0 +1,188 @@
+#{extends 'admin.html' /}
+#{set title:'Students Reports' /}
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var reportSel = '${reportSelected}';
+            
+    $('#report_type').change(function() {
+        var selectedReport = $('#report_type').val();
+        $('#report1').hide();
+        $('#report2').hide();
+        $('#report3').hide();
+        $('#chart1').hide();
+                        
+        switch(selectedReport){
+            case '1':
+                $('#report1').show();  
+                break;
+            case '2':
+                $('#report2').show();
+                break;
+            case '3':
+                $('#report3').show();
+                break; 
+        }
+    });          
+    
+    $('#students').change(function() {
+        $('#generalAveragePerQuarter').submit();
+    });
+    
+    $('#subjects').change(function() {
+        $('#subjectsGradePerQuarter').submit();
+    });
+    
+    $('#yearquarter').change(function() {
+        $('#yearQuarterGeneralAverage').submit();
+    });    
+ 
+    ShowReport(reportSel);
+    
+    function ShowReport(reportSel){        
+        if(reportSel){
+           switch(reportSel){
+            case '1':                
+                $('#report1').show();  
+                break;
+            case '2':
+                $('#report2').show();
+                break;
+            case '3':
+                $('#report3').show();
+                break; 
+        } 
+        }
+    }
+});    
+</script>
+
+<div style="padding-left: 20px;">
+    <h1>Student Reports</h1>      
+    Select Report:
+    <select id="report_type">                      
+        <option value="0">Select...</option>    
+        <option value="1" #{if reportSelected == 1} selected="selected" #{/if}>General Average Per Quarter</option>    
+        <option value="2" #{if reportSelected == 2} selected="selected" #{/if}>Subjects Grade Per Quarter</option>    
+        <option value="3" #{if reportSelected == 3} selected="selected" #{/if}>Year Quarter General Average</option>    
+    </select>   
+    
+    <div id="report1" style="display: none">
+        <form id="generalAveragePerQuarter" action="@{Admin.generalAveragePerQuarter()}" method="GET">
+            <h2>General Average Per Quarter</h2>      
+            Select Student: 
+            <select id="students" name="studentId" style="width: 100px">
+                <option>Select...</option>
+                #{list items:students, as:'stu'}                         
+                    <option value="${stu.id}" #{if userSelected == stu.id} selected="selected" #{/if}>${stu.studentName}</option>
+                #{/list}
+            </select>                
+        </form>
+    </div>
+    
+    <div id="report2" style="display: none">
+        <form id="subjectsGradePerQuarter" action="@{Admin.subjectsGradePerQuarter()}" method="GET">
+            <h2>Subjects Grade Per Quarter</h2>      
+            Select Subject 
+            <select id="subjects" name="subject" style="width: 100px">
+                <option>Select...</option>
+                <option value="mathematics" #{if subjectSelected == "mathematics"} selected="selected" #{/if}>Mathematics</option>
+                <option value="computerScience" #{if subjectSelected == "computerScience"} selected="selected" #{/if}>Computer Science</option>
+                <option value="literature" #{if subjectSelected == "literature"} selected="selected" #{/if}>Literature</option>                
+            </select>   
+        </form>
+    </div>
+    
+    <div id="report3" style="display: none">          
+        <form id="yearQuarterGeneralAverage" action="@{Admin.yearQuarterGeneralAverage()}" method="GET">
+            <h2>Year Quarter General Average <span style="color: red">Incomplete</span></h2>      
+            Select Year/Quarter 
+            <select id="yearquarter" name="value" style="width: 100px">
+                <option>Select...</option>
+                <option value="2009-Q1" #{if yearquarterSelected == "2009|Q1"} selected="selected" #{/if}>2009|Q1</option>
+                <option value="2009-Q2" #{if yearquarterSelected == "2009|Q2"} selected="selected" #{/if}>2009|Q2</option>
+                <option value="2009-Q3" #{if yearquarterSelected == "2009|Q3"} selected="selected" #{/if}>2009|Q3</option>
+                <option value="2009-Q4" #{if yearquarterSelected == "2009|Q4"} selected="selected" #{/if}>2009|Q4</option>                
+            </select>   
+        </form> 
+    </div>
+</div>  
+
+#{if results}
+    <div id="chart1" style="margin-top:20px; margin-left:20px; width:90%; height:350px;"></div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var reportSel = '${reportSelected}';
+        $.jqplot.config.enablePlugins = true;
+        
+        #{if reportSel != '3'}
+        
+            var s1 = [
+                #{list items:results, as:'res'}                         
+                    ${res.total},
+                #{/list}
+            ];
+
+            var ticks = [
+                #{list items:results, as:'res'}                         
+                    '${res.year} - ${res.quarter}',
+                #{/list}
+            ];
+            
+        #{/if}
+        
+        #{if reportSel == '3'}
+    
+            var s1 = [                                        
+                    ${res.resultsBySubject[0]},
+                    ${res.resultsBySubject[1]},
+                    ${res.resultsBySubject[2]}                
+            ];
+
+            var ticks = [
+                'Mathematics',
+                'Computer Science',
+                'Literature'
+            ];
+            
+        #{/if}
+        
+        
+        
+        plot1 = $.jqplot('chart1', [s1], {
+            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+            animate: !$.jqplot.use_excanvas,
+            seriesDefaults:{
+                renderer:$.jqplot.BarRenderer,
+                pointLabels: { show: true }
+            },
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: ticks
+                }
+            },
+            highlighter: { show: false }
+        });
+
+        $('#chart1').bind('jqplotDataClick',
+            function (ev, seriesIndex, pointIndex, data) {
+                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+            }
+        );
+    });    
+    </script>
+
+    <!-- Don't touch this! -->
+    <script class="include" type="text/javascript" src="@{'/public/javascripts/charts/jquery.jqplot.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/charts/examples/syntaxhighlighter/scripts/shCore.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/charts/examples/syntaxhighlighter/scripts/shBrushJScript.min.js'}"></script>
+    <script type="text/javascript" src="@{'/public/javascripts/charts/examples/syntaxhighlighter/scripts/shBrushXml.min.js'}"></script>
+    <!-- Additional plugins go here -->
+    <script class="include" type="text/javascript" src="@{'/public/javascripts/charts/plugins/jqplot.barRenderer.min.js'}"></script>
+    <script class="include" type="text/javascript" src="@{'/public/javascripts/charts/plugins/jqplot.pieRenderer.min.js'}"></script>
+    <script class="include" type="text/javascript" src="@{'/public/javascripts/charts/plugins/jqplot.categoryAxisRenderer.min.js'}"></script>
+    <script class="include" type="text/javascript" src="@{'/public/javascripts/charts/plugins/jqplot.pointLabels.min.js'}"></script>
+    <!-- End additional plugins -->
+#{/if}

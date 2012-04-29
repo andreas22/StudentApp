@@ -1,3 +1,49 @@
-28 Apr 2012 18:55:20,633 INFO  ~ Starting C:\Users\ac1982\workspace_java\StudentApp
-28 Apr 2012 18:55:21,368 WARN  ~ You're running Play! in DEV mode
-28 Apr 2012 18:55:21,509 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+29 Apr 2012 14:56:47,077 INFO  ~ Starting C:\Users\ac1982\workspace_java\StudentApp
+29 Apr 2012 14:56:47,081 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.crud)
+29 Apr 2012 14:56:47,082 INFO  ~ Module crud is available (C:\play-1.2.4\modules\crud)
+29 Apr 2012 14:56:47,082 WARN  ~ Declaring modules in application.conf is deprecated. Use dependencies.yml instead (module.secure)
+29 Apr 2012 14:56:47,083 INFO  ~ Module secure is available (C:\play-1.2.4\modules\secure)
+29 Apr 2012 14:56:47,793 WARN  ~ You're running Play! in DEV mode
+29 Apr 2012 14:56:47,895 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+29 Apr 2012 14:57:11,205 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+29 Apr 2012 14:57:12,006 INFO  ~ Application 'StudentApp' is now started !
+29 Apr 2012 14:57:12,398 ERROR ~ 
+
+@6a7lhpn71
+Internal Server Error (500) for request GET /admin/
+
+Execution exception (In /app/controllers/Admin.java around line 19)
+NullPointerException occured : Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 19)
+
+play.exceptions.JavaExecutionException: Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 19)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:231)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 19)
+	at play.classloading.enhancers.PropertiesEnhancer$FieldAccessor.invokeReadProperty(PropertiesEnhancer.java:205)
+	at controllers.Admin.setConnectedUser(Admin.java:19)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:504)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:478)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:473)
+	at play.mvc.ActionInvoker.handleBefores(ActionInvoker.java:322)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:142)
+	... 1 more
+29 Apr 2012 14:58:29,127 ERROR ~ 
+
+@6a7lhpn72
+Internal Server Error (500) for request GET /admin/
+
+Execution exception (In /app/controllers/Admin.java around line 24)
+NullPointerException occured : Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 24)
+
+play.exceptions.JavaExecutionException: Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 24)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:231)
+	at Invocation.HTTP Request(Play!)
+Caused by: java.lang.NullPointerException: Try to read fullname on null object models.User (controllers.Admin.setConnectedUser, line 24)
+	at play.classloading.enhancers.PropertiesEnhancer$FieldAccessor.invokeReadProperty(PropertiesEnhancer.java:205)
+	at controllers.Admin.setConnectedUser(Admin.java:24)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:504)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:478)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:473)
+	at play.mvc.ActionInvoker.handleBefores(ActionInvoker.java:322)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:142)
+	... 1 more

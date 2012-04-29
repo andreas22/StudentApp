@@ -1,0 +1,21 @@
+#{extends 'admin.html' /}
+
+<div id="welcome">&raquo;Welcome ${user}!</div>
+
+<ul id="menu">    
+    <li>
+       <a href="@{Secure.logout()}" id="logout">Log out</a>
+    </li>
+    <li>
+        <a href="@{Users.list()}" id="users">System Users</a>
+    </li>
+    <li>
+        <a href="@{Students.list()}" id="students">Students</a>
+    </li>   
+    <li>
+        <a href="@{Admin.upload()}" id="uploads">Uploads</a>
+    </li> 
+    <li>
+        <a href="@{Admin.reports()}" id="reports">Reports</a>
+    </li> 
+</ul>

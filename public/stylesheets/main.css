@@ -1,0 +1,109 @@
+#admin {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica', 'Arial', 'Sans';
+    font-size: 90%;
+    color: #111;
+}
+
+/** Header **/
+
+#admin #header {
+    background: #111111;
+    padding: 10px 20px;
+}
+
+h1 {
+    color: #333;
+    font-weight: normal;
+}
+
+h2{
+    font-height: 17px;
+}
+
+#admin #header h1 {
+    margin: 0;
+    color: gold;
+    font-weight: normal;
+}
+
+#admin #header h1 a {
+    color: gold;
+    text-decoration: none;
+}
+
+#admin #welcome{
+    padding: 20px 0 0 20px;
+}
+
+ul {
+    list-style: none;
+    margin: 30px 0;
+    padding-left: 10px;
+}
+
+ul li #logout{   
+    background: url(../images/logout.png) no-repeat center;
+    width: 90px;    
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 115px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+ul li #users{    
+    background: url(../images/user.png) no-repeat center;
+    width: 120px;    
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 115px;
+    margin-right: 20px;
+    text-decoration: none;
+    color: black;
+}
+
+ul li #students{    
+    background: url(../images/students.png) no-repeat center;
+    width: 90px;    
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 115px;
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+}
+
+ul li #uploads{    
+    background: url(../images/upload.png) no-repeat center;
+    width: 90px;    
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 115px;
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+}
+
+ul li #reports{    
+    background: url(../images/reports.png) no-repeat center;
+    width: 90px;    
+    display: block;
+    float: left;
+    text-align: center;
+    padding-top: 115px;
+    text-decoration: none;
+    color: black;
+}
+
+ul li:hover{
+    text-decoration: underline;
+    font-weight: bold;
+}
+

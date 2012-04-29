@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>School Administration</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        #{get 'moreStyles' /}	        
+        <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/main.css'}" />
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}" />                        
+        <link class="include" rel="stylesheet" type="text/css" href="@{'/public/javascripts/charts/jquery.jqplot.min.css'}" />      
+        <link rel="stylesheet" type="text/css" href="@{'/public/javascripts/charts/examples/examples.min.css'}" />
+        <link type="text/css" rel="stylesheet" href="@{'/public/javascripts/charts/examples/syntaxhighlighter/styles/shCoreDefault.min.css'}" />
+        <link type="text/css" rel="stylesheet" href="@{'/public/javascripts/charts/examples/syntaxhighlighter/styles/shThemejqPlot.min.css'}" />        
+        <script src="@{'/public/javascripts/jquery-1.7.2.min.js'}"></script>
+        <script src="@{'/public/javascripts/jquery.tools-1.2.5.toolbox.expose.min.js'}"></script>                
+    </head>
+    <body id="admin">        
+        <div id="header">
+            <div id="logo">
+                <h1>School Administration</h1>
+            </div>            
+        </div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="@{Admin.index()}" id="home">Home</a>
+            </p>
+        
+        <div id="main">
+            #{doLayout /} 
+        </div>
+        
+        <p id="footer">
+         
+        </p>
+        
+    </body>
+</html>
